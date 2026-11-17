@@ -245,36 +245,49 @@ async function loadIso() {
   if (!ORS_KEY.trim()) { try { $("keep").checked ? localStorage.setItem("ors_key", key) : localStorage.removeItem("ors_key"); } catch (e) {} }
   const m = mode(), hs = hoursList();
   if (!hs.length) return status("Bitte mindestens eine Zeit wählen.", true);
-  $("iso").disabled = true; status("Isochronen werden berechnet …");
-  try {
-    const res = await fetch("https://api.openrouteservice.org/v2/isochrones/" + MODES[m].ors, {
-      method: "POST",
-      headers: {"Content-Type": "application/json", "Authorization": key},
-      body: JSON.stringify({locations: [[start.lng, start.lat]], range: hs.map(h => Math.round(h * 3600)), range_type: "time"})
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      const msg = (data && data.error && (data.error.message || data.error)) || res.status;
-      throw new Error(typeof msg === "string" ? msg : JSON.stringify(msg));
-    }
-    isoLayer.clearLayers(); isoFeatures = [];
-    data.features.sort((a, b) => b.properties.value - a.properties.value).forEach(f => {
-      const h = f.properties.value / 3600;
-      const idx = hs.findIndex(x => Math.round(x * 3600) === f.properties.value);
-      const color = COLORS[Math.min(Math.max(idx, 0), COLORS.length - 1)];
+  $("iso").disabled = true;
+  isoLayer.clearLayers(); isoFeatures = [];
+  $("isoOn").checked = true; if (!map.hasLayer(isoLayer)) isoLayer.addTo(map);
+  const failed = []; let ok = 0;
+  for (let i = 0; i < hs.length; i++) {
+    const h = hs[i];
+    status("Isochrone " + (i + 1) + " von " + hs.length + " (" + fmtH(h) + ") wird berechnet …");
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 45000);
+    try {
+      const res = await fetch("https://api.openrouteservice.org/v2/isochrones/" + MODES[m].ors, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Authorization": key},
+        body: JSON.stringify({locations: [[start.lng, start.lat]], range: [Math.round(h * 3600)], range_type: "time"}),
+        signal: ctl.signal
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        const msg = (data && data.error && (data.error.message || data.error)) || res.status;
+        throw new Error(typeof msg === "string" ? msg : JSON.stringify(msg));
+      }
+      const f = data.features[0];
+      const color = COLORS[Math.min(i, COLORS.length - 1)];
       L.geoJSON(f, {style: {color: "#0b0f13", weight: 10, opacity: 0.9, fill: false}, interactive: false}).addTo(isoLayer);
       L.geoJSON(f, {style: {color, weight: 6, dashArray: "12 7", fill: false}})
         .bindTooltip("Isochrone " + fmtH(h) + " (" + MODES[m].name + ")", {sticky: true}).addTo(isoLayer);
       f.properties.name = "Isochrone " + MODES[m].name + " " + fmtH(h);
-      isoFeatures.push(f);
-    });
-    $("isoOn").checked = true; if (!map.hasLayer(isoLayer)) isoLayer.addTo(map);
-    map.fitBounds(isoLayer.getBounds(), {padding: [30, 30]});
-    const n = $("isonote"); n.textContent = "Berechnet für: " + MODES[m].name + ", " + hs.map(fmtH).join(", ") + "."; n.className = "note-line";
-    status("Isochronen geladen. Sie folgen dem Wegenetz (dick gestrichelt).");
-  } catch (e) {
-    status("Isochronen nicht geladen: " + e.message + ". Mögliche Ursachen: falscher Schlüssel, Zeit über dem Limit des Dienstes oder keine Internetverbindung. Kürzere Zeiten probieren.", true);
-  } finally { $("iso").disabled = false; }
+      isoFeatures.push(f); ok++;
+    } catch (e) {
+      const why = e.name === "AbortError" ? "Zeitüberschreitung (keine Antwort nach 45 s)"
+        : e.name === "TypeError" ? "keine Antwort vom Dienst (Zeit vermutlich zu groß, oder Verbindung blockiert)" : e.message;
+      failed.push(fmtH(h) + ": " + why);
+    } finally { clearTimeout(timer); }
+  }
+  if (ok) map.fitBounds(isoLayer.getBounds(), {padding: [30, 30]});
+  const n = $("isonote");
+  n.textContent = ok ? "Berechnet für: " + MODES[m].name + ", " + isoFeatures.length + " von " + hs.length + " Zeiten." : "";
+  n.className = "note-line";
+  if (failed.length) {
+    status((ok ? ok + " von " + hs.length + " Isochronen geladen. " : "Keine Isochrone geladen. ") + "Nicht berechnet: " + failed.join("; ") + ". Kürzere Zeiten funktionieren eher.", true);
+  } else {
+    status("Alle " + ok + " Isochronen geladen (dick gestrichelt, entlang des Wegenetzes).");
+  }
+  $("iso").disabled = false;
 }
 
 async function search() {
