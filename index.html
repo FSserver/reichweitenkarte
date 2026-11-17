@@ -283,7 +283,16 @@ async function loadIso() {
   n.textContent = ok ? "Berechnet für: " + MODES[m].name + ", " + isoFeatures.length + " von " + hs.length + " Zeiten." : "";
   n.className = "note-line";
   if (failed.length) {
-    status((ok ? ok + " von " + hs.length + " Isochronen geladen. " : "Keine Isochrone geladen. ") + "Nicht berechnet: " + failed.join("; ") + ". Kürzere Zeiten funktionieren eher.", true);
+    let tip = " Kürzere Zeiten funktionieren eher.";
+    if (!ok) {
+      try {
+        await fetch("https://api.openrouteservice.org/v2/health", {mode: "no-cors", cache: "no-store"});
+        tip = " Der Dienst ist erreichbar, lehnt die Anfrage aber ab. Häufig ist der Schlüssel falsch oder gesperrt, oder das Tageslimit ist erreicht. Schlüssel bei openrouteservice.org prüfen.";
+      } catch (e) {
+        tip = " Der Dienst ist von diesem Browser aus nicht erreichbar. Häufige Ursachen: VPN, Werbeblocker oder Datenschutz-Erweiterung, Netzwerkfilter. Ohne VPN und in einem privaten Fenster erneut versuchen.";
+      }
+    }
+    status((ok ? ok + " von " + hs.length + " Isochronen geladen. " : "Keine Isochrone geladen.") + (ok ? " Nicht berechnet: " + failed.join("; ") + "." : "") + tip, true);
   } else {
     status("Alle " + ok + " Isochronen geladen (dick gestrichelt, entlang des Wegenetzes).");
   }
