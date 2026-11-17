@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxMjE4MWQiLz48ZyBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjQiPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjI4IiBzdHJva2U9IiNlODQ4MWMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyMSIgc3Ryb2tlPSIjZjVhMDAwIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMTQiIHN0cm9rZT0iIzJlOWU0ZiIvPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjciIHN0cm9rZT0iIzFlODhlNSIvPjwvZz48L3N2Zz4=">
+<link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAC1UlEQVR42u2av27CMBDGE4uRqVMH8gIIRNWJx2JEPABi5LGYEFWrvkB4BPZ2iBS5tu/uOzshMdRiIXHO3+/i85+Ly5fXqsi5mCLzMunc4vfbD3N3fim7ba7spAvxonuFSQKI090tSSRAV9LTMdQAonReR+LjqQBU83HO68SaAiDYXnogJpqFAFRt1IeaMVVtq24xZADfdNAurxskAdtSACAWtdJ5DC0DByDaSpHOYKgYFAC4eqqj44/wTUMAjAlKB6UbJ7EtgAxhAJV6X/ds/x5s7Lo7iyRahgBAtHpKN0+SyCAAgOpx6UEMnMEHMHGrtGpbJaq3H7StaSelCbiuosIuqN7v61Tl2f49WLk+1C3S/FIybv3ThagO56hnfE9J5zGovtQ2xEQCCUC5n1LvSJ9uTo7K23HNYAQZkEiQN/Va9dPNyVfvX3eA7XhQzfQGDHbEeZR0CoNiEAPSlmripsygenz8oRgiBCjSKs3LDfpJ7PF+nenm5NdpBqVqW+HLxKTEFuU/Xxl1ERy4ZIBgAIBucFxLCfVvgb2ulREMAxPdf4KesyV+fX60Px7PNtU0gS9sU3Ojthcd9XY1ikEV+r0ABIujnrmYXrLPTv8DPCTAYrkCLw4PQA0pjlz7LzVw9QvQzCb+gM2Mqovlqv3x46Y/vaiXEsFJDpxN8PkVn7PFbU0rOKkLUQtgaj+gMgIWxWq02aded2e/ydtx7S82Ve8trv/Ib0DsRS2MKhzbyqL7RQFG3PKIC2CbQcSw6/C7ajBbZfAYsl8usxukMJzr2k39c6RV8Lwin5bDE1uIej7hwAEg2aHEcZDK8uL5XcNkL/ghlYqHCPW2Nb6os9NFjun1IvcPHBEMqrVTcYdPTIiJsX/kKx7gM2uR+4dulcWRHjVg1nbZHPZIb6NXs8904AnZKhQjP3KG64godzr01wfGAMcuOyEZ/uBrBMxIjx4PWLLPTv8CB55rJu61jnYAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<title>Erreichbarkeit: Ringe und Isochronen</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{color-scheme:dark;--ink:#e6ebee;--paper:#12181d;--panel:#1a222a;--field:#0f1418;--line:#2f3a43;--edge:#4a5863;--muted:#9fb0ba;--accent:#4da3ff;--warn:#ff9b6b}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper);display:flex}
+aside{width:360px;max-width:100%;display:flex;flex-direction:column;border-right:1px solid var(--line);flex:none;background:var(--paper)}
+.scroll{flex:1;overflow-y:auto;padding:16px}
+#map{flex:1;min-height:100%;background:#0f1418}
+h1{font-size:18px;margin:0 0 2px}
+h2{font-size:13px;margin:20px 0 8px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+h2 b{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:50%;background:var(--accent);color:#0a1218;margin-right:6px;letter-spacing:0}
+p.hint{margin:0 0 8px;color:var(--muted);font-size:13px}
+label{display:block}
+.row{display:flex;gap:8px;align-items:center;margin:6px 0}
+.row .grow{flex:1}
+input[type=text],input[type=password],input[type=number]{font:inherit;padding:7px 9px;border:1px solid var(--edge);border-radius:6px;background:var(--field);color:var(--ink);min-width:0;width:100%}
+input::placeholder{color:#6f808b}
+input[type=number]{width:80px}
+input[type=checkbox]{accent-color:var(--accent)}
+button{font:inherit;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;background:var(--accent);color:#0a1218;cursor:pointer;font-weight:600}
+button.sec{background:transparent;color:var(--ink);border-color:var(--edge);font-weight:400}
+button.full{width:100%}
+button:hover{filter:brightness(1.12)}
+button:disabled{opacity:.5;cursor:default}
+:focus-visible{outline:3px solid #e0a800;outline-offset:1px}
+.seg{display:flex;border:1px solid var(--edge);border-radius:6px;overflow:hidden}
+.seg label{flex:1;text-align:center;padding:8px 4px;cursor:pointer;position:relative}
+.seg label+label{border-left:1px solid var(--edge)}
+.seg input,.chip input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--accent);color:#0a1218;font-weight:600}
+.seg label:has(input:focus-visible),.chip:has(input:focus-visible){outline:3px solid #e0a800;outline-offset:-3px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative;padding:5px 12px;border:1px solid var(--edge);border-radius:999px;cursor:pointer}
+.chip:has(input:checked){background:var(--accent);border-color:var(--accent);color:#0a1218;font-weight:600}
+.lblsmall{font-size:13px;color:var(--muted);margin:10px 0 6px}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px 12px;margin:10px 0}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card-head strong{font-size:15px}
+.sw{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer}
+.sw input{appearance:none;-webkit-appearance:none;width:40px;height:22px;border-radius:11px;background:#3a4650;position:relative;cursor:pointer;margin:0;transition:background .15s}
+.sw input::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.sw input:checked{background:var(--accent)}
+.sw input:checked::after{left:20px}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.note-line{font-size:13px;margin-top:6px;color:var(--muted)}
+.note-line.warn{color:var(--warn)}
+.disc{margin-top:18px;padding:10px;border:1px solid var(--line);font-size:12px;color:var(--muted);border-radius:6px}
+#startinfo{font-size:13px;color:var(--muted);margin-top:4px}
+#status{flex:none;padding:10px 16px;border-top:1px solid var(--line);background:var(--panel);min-height:3.6em;font-size:13px}
+#status.err{color:var(--warn)}
+.lbl{background:none;border:0;font-size:12px;white-space:nowrap;color:var(--ink);width:auto!important;height:auto!important}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--panel);color:var(--ink);border-bottom-color:var(--edge)}
+.leaflet-bar{border:1px solid var(--edge)}
+.leaflet-control-layers{background:var(--panel);color:var(--ink);border:1px solid var(--edge)}
+.leaflet-control-layers-toggle{filter:invert(1) hue-rotate(180deg)}
+.leaflet-control-attribution{background:rgba(18,24,29,.8)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:#8ec3ff}
+.leaflet-tooltip{background:var(--panel);color:var(--ink);border-color:var(--edge)}
+.leaflet-tooltip-top:before{border-top-color:var(--edge)}
+.loc a{display:flex;align-items:center;justify-content:center;width:34px;height:34px}
+.loc a svg{display:block}
+.loc.busy a svg{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink)}
+.leaflet-popup-content{font-size:13px;line-height:1.5}
+.leaflet-popup-content button{margin-top:6px;padding:5px 10px;font-size:13px}
+@media (max-width:760px){body{flex-direction:column}aside{width:100%;max-height:58vh;border-right:0;border-bottom:1px solid var(--line)}#map{min-height:42vh}}
+</style>
+</head>
+<body>
+<aside>
+<div class="scroll">
+  <h1>Erreichbarkeit</h1>
+  <p class="hint">Wie weit kommt eine Person in einer bestimmten Zeit?</p>
+
+  <h2><b>1</b>Startpunkt</h2>
+  <div class="row">
+    <input type="text" id="q" class="grow" placeholder="Adresse oder Koordinaten" aria-label="Adresse oder Koordinaten">
+    <button id="go" class="sec">Suchen</button>
+  </div>
+  <p class="hint" style="margin:0">Oder direkt in die Karte klicken. Koordinaten z. B. 48.1, 11.7</p>
+  <div id="startinfo">Noch kein Startpunkt gesetzt.</div>
+
+  <h2><b>2</b>Einstellungen</h2>
+  <div class="seg" role="radiogroup" aria-label="Verkehrsmittel">
+    <label><input type="radio" name="mode" value="walk" checked>Zu Fuß</label>
+    <label><input type="radio" name="mode" value="bike">Fahrrad</label>
+    <label><input type="radio" name="mode" value="car">Auto</label>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <label for="speed" class="grow">Tempo (Durchschnitt)</label>
+    <input type="number" id="speed" value="4" min="0.5" step="0.5">
+    <span>km/h</span>
+  </div>
+  <div class="lblsmall">Zeiten</div>
+  <div class="chips">
+    <label class="chip"><input type="checkbox" class="t" value="1" checked>1 h</label>
+    <label class="chip"><input type="checkbox" class="t" value="2" checked>2 h</label>
+    <label class="chip"><input type="checkbox" class="t" value="5" checked>5 h</label>
+    <label class="chip"><input type="checkbox" class="t" value="8" checked>8 h</label>
+    <label class="chip"><input type="checkbox" class="t" value="12" checked>12 h</label>
+  </div>
+  <div class="row">
+    <label for="tc" style="white-space:nowrap">Weitere (h):</label>
+    <input type="text" id="tc" placeholder="z. B. 0.5 3 24">
+  </div>
+
+  <h2><b>3</b>Anzeige</h2>
+  <div class="card">
+    <div class="card-head">
+      <strong><span class="swatch" style="background:linear-gradient(90deg,#1e88e5,#f5a000,#e8481c)"></span>Luftlinien-Ringe</strong>
+      <label class="sw"><input type="checkbox" id="ringsOn" role="switch" checked>Anzeigen</label>
+    </div>
+    <p class="note-line">Kreise nach Tempo mal Zeit. Aktualisieren sich automatisch bei jeder Änderung.</p>
+  </div>
+  <div class="card">
+    <div class="card-head">
+      <strong><span class="swatch" style="background:repeating-linear-gradient(90deg,#1e88e5 0 6px,#0b0f13 6px 9px)"></span>Isochronen</strong>
+      <label class="sw"><input type="checkbox" id="isoOn" role="switch" checked>Anzeigen</label>
+    </div>
+    <p class="note-line">Entlang von Straßen und Wegen. Braucht einen kostenlosen Schlüssel von openrouteservice.org (Konto anlegen, Token erstellen). Lange Zeiten wie 8 oder 12 h gehen meist nicht.</p>
+    <div id="keybox">
+      <div class="row"><input type="password" id="key" placeholder="OpenRouteService-Schlüssel" aria-label="OpenRouteService-Schlüssel" autocomplete="off"></div>
+      <label class="sw" style="margin:2px 0 8px"><input type="checkbox" id="keep">Schlüssel in diesem Browser merken</label>
+    </div>
+    <button id="iso" class="full">Isochronen berechnen</button>
+    <div id="isonote" class="note-line"></div>
+  </div>
+
+  <h2><b>4</b>Export</h2>
+  <div class="row">
+    <button id="gj" class="sec grow">GeoJSON</button>
+    <button id="kml" class="sec grow">KML</button>
+  </div>
+  <p class="hint">Exportiert, was gerade angezeigt wird. KML passt zu Google Earth und CalTopo.</p>
+  <button id="clear" class="sec full">Ringe und Isochronen löschen</button>
+
+  <div class="disc">Die Ringe sind reine Rechenwerte (Tempo mal Zeit, ohne Pausen, Gelände oder Wegenetz). Sie ersetzen keine Einsatzleitung und keine Lost-Person-Behavior-Statistik.</div>
+</div>
+<div id="status" role="status" aria-live="polite">Bitte einen Startpunkt wählen.</div>
+</aside>
+<div id="map" role="application" aria-label="Karte"></div>
+
+<script>
+"use strict";
+// OpenRouteService-Schlüssel hier zwischen die Anführungszeichen einfügen (optional).
+// Ist er eingetragen, werden Eingabefeld und Merken-Haken ausgeblendet.
+const ORS_KEY = "";
+
+const R = 6371;
+const MODES = {
+  walk: {name: "Zu Fuß", ors: "foot-walking"},
+  bike: {name: "Fahrrad", ors: "cycling-regular"},
+  car:  {name: "Auto", ors: "driving-car"}
+};
+const COLORS = ["#1e88e5", "#2e9e4f", "#f5a000", "#e8481c", "#c2185b", "#7b1fa2"];
+const speeds = {walk: 4, bike: 15, car: 60};
+const $ = id => document.getElementById(id);
+const map = L.map("map").setView([48.14, 11.58], 8);
+const base = {
+  "Topografisch": L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+    subdomains: "abc", maxZoom: 17,
+    attribution: "Kartendaten &copy; OpenStreetMap-Mitwirkende, SRTM | Darstellung &copy; OpenTopoMap (CC-BY-SA)"
+  }),
+  "Luftbild": L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 18, attribution: "Esri, Maxar, Earthstar Geographics"
+  })
+};
+base["Topografisch"].addTo(map);
+L.control.layers(base, null, {position: "topright"}).addTo(map);
+const ringLayer = L.layerGroup().addTo(map);
+const isoLayer = L.layerGroup().addTo(map);
+let start = null, startMarker = null, rings = [], isoFeatures = [];
+
+function status(msg, err) { const s = $("status"); s.textContent = msg; s.className = err ? "err" : ""; }
+function mode() { return document.querySelector("input[name=mode]:checked").value; }
+function fmtH(h) { return (h % 1 === 0 ? h : String(h).replace(".", ",")) + " h"; }
+function fmtKm(km) { return (km >= 100 ? Math.round(km) : Math.round(km * 10) / 10).toString().replace(".", ",") + " km"; }
+
+function dest(lat, lng, km, brg) {
+  const d = km / R, b = brg * Math.PI / 180, p1 = lat * Math.PI / 180, l1 = lng * Math.PI / 180;
+  const p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(b));
+  const l2 = l1 + Math.atan2(Math.sin(b) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+  return [p2 * 180 / Math.PI, ((l2 * 180 / Math.PI + 540) % 360) - 180];
+}
+function circlePts(lat, lng, km, n = 120) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) pts.push(dest(lat, lng, km, i * 360 / n));
+  return pts;
+}
+function hoursList() {
+  const hs = [...document.querySelectorAll(".t:checked")].map(c => parseFloat(c.value));
+  $("tc").value.replace(/,/g, ".").split(/[\s;]+/).forEach(x => { const n = parseFloat(x); if (n > 0) hs.push(n); });
+  return [...new Set(hs)].sort((a, b) => a - b).slice(0, 10);
+}
+
+function setStart(lat, lng) {
+  start = {lat, lng};
+  if (startMarker) startMarker.remove();
+  startMarker = L.marker([lat, lng], {title: "Startpunkt"}).addTo(map);
+  $("startinfo").textContent = "Start: " + lat.toFixed(5) + ", " + lng.toFixed(5);
+  drawRings(true);
+  markIsoStale();
+}
+map.on("click", e => setStart(e.latlng.lat, e.latlng.lng));
+
+function drawRings(fit) {
+  ringLayer.clearLayers(); rings = [];
+  if (!start) return;
+  const m = mode(), v = speeds[m], hs = hoursList();
+  if (!(v > 0) || !hs.length) { status(!hs.length ? "Keine Zeit gewählt." : "Bitte ein Tempo größer 0 eingeben.", true); return; }
+  hs.forEach((h, i) => {
+    const km = v * h, color = COLORS[Math.min(i, COLORS.length - 1)];
+    const pts = circlePts(start.lat, start.lng, km);
+    L.polygon(pts, {color, weight: 3, fill: false}).addTo(ringLayer);
+    const top = dest(start.lat, start.lng, km, 0);
+    L.marker(top, {icon: L.divIcon({className: "lbl", html: '<span style="border:2px solid ' + color + ';background:#1a222a;color:#e6ebee;border-radius:3px;padding:1px 5px;white-space:nowrap">' + fmtH(h) + " · " + fmtKm(km) + "</span>", iconSize: null}), interactive: false}).addTo(ringLayer);
+    rings.push({name: MODES[m].name + " " + fmtH(h), h, km, pts});
+  });
+  if (fit && $("ringsOn").checked) map.fitBounds(L.polygon(rings[rings.length - 1].pts).getBounds(), {padding: [30, 30]});
+  status(MODES[m].name + " mit " + v + " km/h: " + rings.map(r => fmtH(r.h) + " = " + fmtKm(r.km)).join(", ") + ".");
+}
+
+function markIsoStale() {
+  if (!isoFeatures.length) return;
+  const n = $("isonote"); n.textContent = "Veraltet: Einstellungen oder Startpunkt haben sich geändert. Bitte neu berechnen."; n.className = "note-line warn";
+}
+function onSettings() { drawRings(false); markIsoStale(); }
+
+async function loadIso() {
+  if (!start) return status("Bitte zuerst einen Startpunkt wählen.", true);
+  const key = $("key").value.trim();
+  if (!key) return status("Bitte den OpenRouteService-Schlüssel eingeben.", true);
+  if (!ORS_KEY.trim()) { try { $("keep").checked ? localStorage.setItem("ors_key", key) : localStorage.removeItem("ors_key"); } catch (e) {} }
+  const m = mode(), hs = hoursList();
+  if (!hs.length) return status("Bitte mindestens eine Zeit wählen.", true);
+  $("iso").disabled = true;
+  isoLayer.clearLayers(); isoFeatures = [];
+  $("isoOn").checked = true; if (!map.hasLayer(isoLayer)) isoLayer.addTo(map);
+  const failed = []; let ok = 0;
+  for (let i = 0; i < hs.length; i++) {
+    const h = hs[i];
+    status("Isochrone " + (i + 1) + " von " + hs.length + " (" + fmtH(h) + ") wird berechnet …");
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 45000);
+    try {
+      const res = await fetch("https://api.openrouteservice.org/v2/isochrones/" + MODES[m].ors, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Authorization": key},
+        body: JSON.stringify({locations: [[start.lng, start.lat]], range: [Math.round(h * 3600)], range_type: "time"}),
+        signal: ctl.signal
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        const msg = (data && data.error && (data.error.message || data.error)) || res.status;
+        throw new Error(typeof msg === "string" ? msg : JSON.stringify(msg));
+      }
+      const f = data.features[0];
+      const color = COLORS[Math.min(i, COLORS.length - 1)];
+      L.geoJSON(f, {style: {color: "#0b0f13", weight: 10, opacity: 0.9, fill: false}, interactive: false}).addTo(isoLayer);
+      L.geoJSON(f, {style: {color, weight: 6, dashArray: "12 7", fill: false}})
+        .bindTooltip("Isochrone " + fmtH(h) + " (" + MODES[m].name + ")", {sticky: true}).addTo(isoLayer);
+      f.properties.name = "Isochrone " + MODES[m].name + " " + fmtH(h);
+      isoFeatures.push(f); ok++;
+    } catch (e) {
+      const why = e.name === "AbortError" ? "Zeitüberschreitung (keine Antwort nach 45 s)"
+        : e.name === "TypeError" ? "keine Antwort vom Dienst (Zeit vermutlich zu groß, oder Verbindung blockiert)" : e.message;
+      failed.push(fmtH(h) + ": " + why);
+    } finally { clearTimeout(timer); }
+  }
+  if (ok) map.fitBounds(isoLayer.getBounds(), {padding: [30, 30]});
+  const n = $("isonote");
+  n.textContent = ok ? "Berechnet für: " + MODES[m].name + ", " + isoFeatures.length + " von " + hs.length + " Zeiten." : "";
+  n.className = "note-line";
+  if (failed.length) {
+    status((ok ? ok + " von " + hs.length + " Isochronen geladen. " : "Keine Isochrone geladen. ") + "Nicht berechnet: " + failed.join("; ") + ". Kürzere Zeiten funktionieren eher.", true);
+  } else {
+    status("Alle " + ok + " Isochronen geladen (dick gestrichelt, entlang des Wegenetzes).");
+  }
+  $("iso").disabled = false;
+}
+
+async function search() {
+  const q = $("q").value.trim(); if (!q) return;
+  const c = q.match(/^\s*(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)\s*$/);
+  if (c) {
+    const lat = parseFloat(c[1].replace(",", ".")), lng = parseFloat(c[2].replace(",", "."));
+    if (Math.abs(lat) <= 90 && Math.abs(lng) <= 180) { map.setView([lat, lng], 11); setStart(lat, lng); return; }
+  }
+  status("Suche läuft …");
+  try {
+    const r = await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + encodeURIComponent(q));
+    const j = await r.json();
+    if (!j.length) return status("Nichts gefunden. Andere Schreibweise oder Koordinaten probieren.", true);
+    const lat = parseFloat(j[0].lat), lng = parseFloat(j[0].lon);
+    map.setView([lat, lng], 11); setStart(lat, lng);
+  } catch (e) { status("Suche fehlgeschlagen: " + e.message, true); }
+}
+
+function features() {
+  const f = [];
+  if (start) f.push({type: "Feature", properties: {name: "Startpunkt"}, geometry: {type: "Point", coordinates: [start.lng, start.lat]}});
+  if ($("ringsOn").checked) rings.forEach(r => f.push({type: "Feature", properties: {name: "Ring " + r.name + " (" + fmtKm(r.km) + ")"},
+    geometry: {type: "Polygon", coordinates: [r.pts.map(p => [p[1], p[0]])]}}));
+  if ($("isoOn").checked) isoFeatures.forEach(x => f.push(x));
+  return f;
+}
+function download(name, text, type) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type}));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+function esc(s) { return String(s).replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c])); }
+function toKml(fs) {
+  const ring = c => "<LinearRing><coordinates>" + c.map(p => p[0] + "," + p[1] + ",0").join(" ") + "</coordinates></LinearRing>";
+  const poly = rs => "<Polygon><outerBoundaryIs>" + ring(rs[0]) + "</outerBoundaryIs>" +
+    rs.slice(1).map(h => "<innerBoundaryIs>" + ring(h) + "</innerBoundaryIs>").join("") + "</Polygon>";
+  const body = fs.map(f => {
+    const g = f.geometry; let geo = "";
+    if (g.type === "Point") geo = "<Point><coordinates>" + g.coordinates[0] + "," + g.coordinates[1] + ",0</coordinates></Point>";
+    else if (g.type === "Polygon") geo = poly(g.coordinates);
+    else if (g.type === "MultiPolygon") geo = "<MultiGeometry>" + g.coordinates.map(poly).join("") + "</MultiGeometry>";
+    return "<Placemark><name>" + esc(f.properties.name || "") + "</name>" + geo + "</Placemark>";
+  }).join("");
+  return '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Erreichbarkeit</name>' + body + "</Document></kml>";
+}
+function exportAs(kind) {
+  const fs = features();
+  if (fs.length < 2) return status("Nichts zu exportieren. Es muss etwas angezeigt werden (Ringe oder Isochronen).", true);
+  if (kind === "gj") download("erreichbarkeit.geojson", JSON.stringify({type: "FeatureCollection", features: fs}), "application/geo+json");
+  else download("erreichbarkeit.kml", toKml(fs), "application/vnd.google-earth.kml+xml");
+  status("Datei exportiert (nur sichtbare Ebenen).");
+}
+
+// Standort
+let meDot = null, meAcc = null, locBox = null;
+const LocateCtl = L.Control.extend({
+  options: {position: "topright"},
+  onAdd() {
+    locBox = L.DomUtil.create("div", "leaflet-bar loc");
+    const a = L.DomUtil.create("a", "", locBox);
+    a.href = "#"; a.title = "Meinen Standort anzeigen"; a.setAttribute("role", "button"); a.setAttribute("aria-label", "Meinen Standort anzeigen");
+    a.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg>';
+    L.DomEvent.disableClickPropagation(locBox);
+    L.DomEvent.on(a, "click", e => { L.DomEvent.preventDefault(e); locate(); });
+    return locBox;
+  }
+});
+new LocateCtl().addTo(map);
+function locate() {
+  if (!("geolocation" in navigator)) return status("Dieser Browser unterstützt keine Standortabfrage.", true);
+  locBox.classList.add("busy");
+  status("Standort wird ermittelt …");
+  map.locate({enableHighAccuracy: true, timeout: 15000, maximumAge: 0});
+}
+map.on("locationfound", e => {
+  locBox.classList.remove("busy");
+  const {lat, lng} = e.latlng, acc = e.accuracy;
+  if (meDot) meDot.remove(); if (meAcc) meAcc.remove();
+  meAcc = L.circle(e.latlng, {radius: acc, color: "#4da3ff", weight: 1, fillColor: "#4da3ff", fillOpacity: 0.15, interactive: false}).addTo(map);
+  const box = document.createElement("div");
+  box.appendChild(document.createTextNode("Dein Standort, Genauigkeit ca. " + Math.round(acc) + " m"));
+  box.appendChild(document.createElement("br"));
+  const b = document.createElement("button");
+  b.textContent = "Als Startpunkt setzen";
+  b.onclick = () => { setStart(lat, lng); map.closePopup(); };
+  box.appendChild(b);
+  meDot = L.circleMarker(e.latlng, {radius: 8, color: "#fff", weight: 3, fillColor: "#4da3ff", fillOpacity: 1}).addTo(map).bindPopup(box);
+  map.fitBounds(meAcc.getBounds(), {maxZoom: 15, padding: [30, 30]});
+  status("Standort gefunden (ca. " + Math.round(acc) + " m genau). Auf den blauen Punkt klicken, um ihn als Startpunkt zu setzen.");
+});
+map.on("locationerror", e => {
+  locBox.classList.remove("busy");
+  const why = e.code === 1 ? (location.protocol === "file:"
+      ? "Zugriff nicht möglich. Browser erlauben den Standort meist nicht für lokal geöffnete Dateien. Alternative: Koordinaten aus der Karten-App ins Suchfeld einfügen."
+      : "Zugriff verweigert. Bitte die Standortfreigabe für diese Seite im Browser erlauben.")
+    : e.code === 3 ? "Zeitüberschreitung. Bitte erneut versuchen." : "Die Position konnte nicht ermittelt werden.";
+  status("Standort nicht verfügbar: " + why, true);
+});
+
+// Bedienung
+document.querySelectorAll("input[name=mode]").forEach(r => r.addEventListener("change", () => { $("speed").value = speeds[mode()]; onSettings(); }));
+$("speed").addEventListener("input", () => { speeds[mode()] = parseFloat($("speed").value) || 0; onSettings(); });
+document.querySelectorAll(".t").forEach(c => c.addEventListener("change", onSettings));
+$("tc").addEventListener("input", onSettings);
+$("ringsOn").addEventListener("change", e => { e.target.checked ? ringLayer.addTo(map) : map.removeLayer(ringLayer); });
+$("isoOn").addEventListener("change", e => { e.target.checked ? isoLayer.addTo(map) : map.removeLayer(isoLayer); });
+$("iso").onclick = loadIso;
+$("go").onclick = search;
+$("q").addEventListener("keydown", e => { if (e.key === "Enter") search(); });
+$("clear").onclick = () => { ringLayer.clearLayers(); isoLayer.clearLayers(); rings = []; isoFeatures = []; $("isonote").textContent = ""; status("Ringe und Isochronen gelöscht. Der Startpunkt bleibt."); };
+$("gj").onclick = () => exportAs("gj");
+$("kml").onclick = () => exportAs("kml");
+if (ORS_KEY.trim()) {
+  $("key").value = ORS_KEY.trim();
+  $("keybox").style.display = "none";
+} else {
+  try { const k = localStorage.getItem("ors_key"); if (k) { $("key").value = k; $("keep").checked = true; } } catch (e) {}
+}
+</script>
+</body>
+</html>
